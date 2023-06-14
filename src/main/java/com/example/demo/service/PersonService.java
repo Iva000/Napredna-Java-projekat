@@ -34,7 +34,7 @@ public class PersonService {
     
     public List<PersonDto> getAll(){
         List<Person> people = personRepo.findAll();
-        return people.stream().map((person)-> personMapper.toEntityDto(person)).collect(Collectors.toList());
+        return people.stream().map((person)-> personMapper.toEntityDto(person, cityMapper.toEntityDto(person.getCity()))).collect(Collectors.toList());
     }
     
     public List<PersonDto> searchPeople(SearchRequest searchDto){
@@ -45,7 +45,7 @@ public class PersonService {
         {
             people = personRepo.getPersonByCriteria(searchDto.getSearchField());
         }
-        return people.stream().map((person)-> personMapper.toEntityDto(person)).collect(Collectors.toList());
+        return people.stream().map((person)-> personMapper.toEntityDto(person,cityMapper.toEntityDto(person.getCity()))).collect(Collectors.toList());
     }
     
     public void addPerson(PersonDto person){
@@ -64,7 +64,7 @@ public class PersonService {
     public PersonDto getPerson(String personId){
         Person p = personRepo.findById(personId).orElse(null);
         List<Person> people = new ArrayList<>();
-        PersonDto person = personMapper.toEntityDto(p);
+        PersonDto person = personMapper.toEntityDto(p, cityMapper.toEntityDto(p.getCity()));
         people.add(p);
         return person;
     }

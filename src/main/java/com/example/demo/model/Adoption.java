@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,8 +30,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Adoption implements Serializable, EntityDB{
     
+    @Id
+    @Column(name="adoptionId", nullable = false,updatable = false,unique = true)
+    private int adoptionId;
+    
     @Column(name="date",nullable = false,updatable = true)
-    private Date date;
+    private LocalDate date;
     
     @Column(name="firstTime",nullable = false,updatable = true)
     private boolean firstTime;
@@ -38,16 +43,17 @@ public class Adoption implements Serializable, EntityDB{
     @Column(name="vetReport",nullable = false,updatable = true)
     private String vetReport;
     
-    @Id
+    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne
-    @JoinColumn(name="petId",nullable = false,updatable = false,unique = true)
+    //@ManyToOne
+    @Column(name="petId",nullable = false,updatable = false,unique = true)
     private int petId;
     
-    @Id
+    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne
-    @JoinColumn(name="personId",nullable = false,updatable = false,unique = true)
+    //@ManyToOne
+    //joinColumn
+    @Column(name="personId",nullable = false,updatable = false,unique = true)
     private String personId;
     
 }

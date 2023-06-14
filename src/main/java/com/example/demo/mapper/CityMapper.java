@@ -7,11 +7,13 @@ package com.example.demo.mapper;
 import com.example.demo.dto.CityDto;
 import com.example.demo.model.City;
 import com.example.demo.model.EntityDB;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Iva
  */
+@Component
 public class CityMapper implements IMapper<CityDto, City>{
 
     @Override

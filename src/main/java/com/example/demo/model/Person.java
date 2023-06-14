@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 
-import com.example.demo.dto.CityDto;
 import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class Person implements Serializable, EntityDB{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="jmbg",nullable = false,updatable = false,unique = true)
     private String jmbg;
     
@@ -45,7 +44,7 @@ public class Person implements Serializable, EntityDB{
     
     @ManyToOne
     @JoinColumn(name="city", nullable = false, updatable = true)
-    private CityDto city;
+    private City city;
     
     @Column(name="phone_number", nullable = false, updatable = true)
     private String phone_number;

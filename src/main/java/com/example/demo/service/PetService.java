@@ -35,7 +35,7 @@ public class PetService {
     
     public List<PetDto> getAll(){
         List<Pet> pets = petRepo.findAll();
-        return pets.stream().map((pet)-> petMapper.toEntityDto(pet)).collect(Collectors.toList());
+        return pets.stream().map((pet)-> petMapper.toEntityDto(pet, typeMapper.toEntityDto(pet.getType()))).collect(Collectors.toList());
     }
     
     public List<PetDto> searchPets(SearchRequest searchDto){
@@ -46,7 +46,7 @@ public class PetService {
         {
             pets = petRepo.getPetByCriteria(searchDto.getSearchField());
         }
-        return pets.stream().map((pet)-> petMapper.toEntityDto(pet)).collect(Collectors.toList());
+        return pets.stream().map((pet)-> petMapper.toEntityDto(pet, typeMapper.toEntityDto(pet.getType()))).collect(Collectors.toList());
     }
     
     public void addPet(PetDto pet){
@@ -65,7 +65,7 @@ public class PetService {
     public PetDto getPet(int petId){
         Pet p = petRepo.findById(petId).orElse(null);
         List<Pet> pets = new ArrayList<>();
-        PetDto pet = petMapper.toEntityDto(p);
+        PetDto pet = petMapper.toEntityDto(p, typeMapper.toEntityDto(p.getType()));
         pets.add(p);
         return pet;
     }

@@ -42,7 +42,7 @@ public class Pet implements Serializable, EntityDB{
     
     @ManyToOne
     @JoinColumn(name="type",nullable = false,updatable = true)
-    private TypeDto type;
+    private Type type;
     
     @Column(name="description",nullable = false,updatable = true)
     private String description;

@@ -7,11 +7,13 @@ package com.example.demo.mapper;
 import com.example.demo.dto.UserDto;
 import com.example.demo.model.EntityDB;
 import com.example.demo.model.User;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Iva
  */
+@Component
 public class UserMapper implements IMapper<UserDto, User>{
 
     @Override

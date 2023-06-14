@@ -7,11 +7,13 @@ package com.example.demo.mapper;
 import com.example.demo.dto.TypeDto;
 import com.example.demo.model.EntityDB;
 import com.example.demo.model.Type;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Iva
  */
+@Component
 public class TypeMapper implements IMapper<TypeDto, Type>{
 
     @Override

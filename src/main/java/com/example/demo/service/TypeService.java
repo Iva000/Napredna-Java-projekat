@@ -26,7 +26,7 @@ public class TypeService {
     private final TypeRepo typeRepo;
     private final TypeMapper typeMapper;
     
-    public List<TypeDto> aetAll(){
+    public List<TypeDto> getAll(){
         List<Type> types = typeRepo.findAll();
         return types.stream().map((type)-> typeMapper.toEntityDto(type)).collect(Collectors.toList());
     }

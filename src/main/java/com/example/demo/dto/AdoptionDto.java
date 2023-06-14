@@ -8,6 +8,7 @@ package com.example.demo.dto;
  *
  * @author Iva
  */
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +23,8 @@ import lombok.Setter;
 @Setter
 public class AdoptionDto implements EntityDto{
     
-    private Date date;
+    private int adoptionId;
+    private LocalDate date;
     private boolean firstTime;
     private String vetReport;
     private int petId;

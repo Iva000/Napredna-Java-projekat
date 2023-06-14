@@ -15,6 +15,8 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface AdoptionRepo extends JpaRepository<Adoption, Integer>{
     
-    @Query(value="SELECT * FROM adoption INNER JOIN PET ON ADOPTION.PETID = PET.ID INNER JOIN PERSON ON ADOPTION.PERSONID = PERSON.JMBG INNER JOIN TYPE ON PET.TYPE = TYPE.ID ", nativeQuery = true)
+    @Query(value="SELECT * FROM adoption ", nativeQuery = true)
+//            + "INNER JOIN PET ON ADOPTION.PETID = PET.ID INNER JOIN PERSON ON ADOPTION.PERSONID = PERSON.JMBG "
+//            + "INNER JOIN TYPE ON PET.TYPE = TYPE.ID "
     List<Adoption> getAllAdoptions();
 }
