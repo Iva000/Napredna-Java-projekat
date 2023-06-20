@@ -28,8 +28,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Person implements Serializable, EntityDB{
     
+    
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="jmbg",nullable = false,updatable = false,unique = true)
     private String jmbg;
     

@@ -10,7 +10,6 @@ import com.example.demo.mapper.PersonMapper;
 import com.example.demo.model.Person;
 import com.example.demo.repo.CityRepo;
 import com.example.demo.repo.PersonRepo;
-import com.example.demo.response.SearchRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,14 +36,14 @@ public class PersonService {
         return people.stream().map((person)-> personMapper.toEntityDto(person, cityMapper.toEntityDto(person.getCity()))).collect(Collectors.toList());
     }
     
-    public List<PersonDto> searchPeople(SearchRequest searchDto){
+    public List<PersonDto> searchPeople(String searchDto){
         List<Person> people;
-        if(searchDto.getSearchField()==""){
-            people = personRepo.findAll();
-        }else //if(searchDto.getSearchType().equals("Name"))
-        {
-            people = personRepo.getPersonByCriteria(searchDto.getSearchField());
-        }
+//        if(searchDto.getSearchField()==""){
+//            people = personRepo.findAll();
+//        }else //if(searchDto.getSearchType().equals("Name"))
+//        {
+            people = personRepo.findBySurnameStartsWith(searchDto);
+       // }
         return people.stream().map((person)-> personMapper.toEntityDto(person,cityMapper.toEntityDto(person.getCity()))).collect(Collectors.toList());
     }
     
@@ -54,8 +53,8 @@ public class PersonService {
     
     public String deletePerson(String personId){
         try{
-            personRepo.deleteById(personId);
-            return "Person is successfully deleted1";
+            personRepo.deleteByJmbg(personId);
+            return "Person is successfully deleted!";
         } catch(Exception ex){
             return "Error! Person can not be deleted!";
         }
@@ -71,7 +70,7 @@ public class PersonService {
     
     public String updatePerson(PersonDto person){
         try{
-            personRepo.save(personMapper.toEntityDB(person));
+            personRepo.save(personMapper.toEntityDB(person, cityMapper.toEntityDB(person.getCity())));
             return "Person has been successfully updated!";
         }catch(Exception ex){
             return "Error! Person can not be updated!";

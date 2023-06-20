@@ -34,17 +34,29 @@ public class PetController {
     
     @GetMapping("/all")
     public ResponseEntity<Response> getAll(){
-        		return ResponseEntity.ok(HttpResponse.getResponseWithData("Pets have been successuffly imporeted!", Map.of("values",petService.getAll()), HttpStatus.OK));
+        System.out.println("usao u uzimanje svih");
+        return ResponseEntity.ok(HttpResponse.getResponseWithData("Pets have been successuffly imporeted!", Map.of("values",petService.getAll()), HttpStatus.OK));
 
     }
     
-    @GetMapping("/search")
-    public ResponseEntity<Response> searchPet(@RequestBody SearchRequest searchRequest){
+    @GetMapping("/search/{searchRequest}")
+    public ResponseEntity<Response> searchPet(@PathVariable("searchRequest") String searchRequest){
+        System.out.println("usao u kontroler");
         return ResponseEntity.ok(HttpResponse.getResponseWithData("Searched pets: ", Map.of("values", petService.searchPets(searchRequest)), HttpStatus.OK));
+    }
+    
+    @PostMapping("/delete")
+    public ResponseEntity<Response> deletePet(@RequestBody int petId){
+        System.out.println("Usao u brisanje");
+        petService.deletePet(petId);
+        return ResponseEntity.ok(HttpResponse.getResponse("Pet has been successfully deleted!", HttpStatus.OK));
+    
+        //return ResponseEntity.ok(HttpResponse.getResponseWithData("Pet has been successfully deleted!", Map.of("values", petService.deletePet(petId)), HttpStatus.OK));
     }
     
     @PostMapping("/add")
     public ResponseEntity<Response> addPet(@RequestBody PetDto pet){
+        System.out.println("Usao u kontrolera za dodavanje");
         petService.addPet(pet);
         return ResponseEntity.ok(HttpResponse.getResponse("Pet has been successfully added!", HttpStatus.OK));
     }
@@ -54,10 +66,7 @@ public class PetController {
         return ResponseEntity.ok(HttpResponse.getResponseWithData("Pet has been found!", Map.of("values", petService.getPet(petId)), HttpStatus.OK));
     }
     
-    @DeleteMapping("/delete")
-    public ResponseEntity<Response> deletePet(@PathVariable("petId") int petId){
-        return ResponseEntity.ok(HttpResponse.getResponseWithData("Pet has been successfully deleted!", Map.of("value", petService.deletePet(petId)), HttpStatus.OK));
-    }
+    
     
     @PostMapping("/update")
     public ResponseEntity<Response> updatePet(@RequestBody PetDto pet){

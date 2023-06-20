@@ -38,25 +38,27 @@ public class PetService {
         return pets.stream().map((pet)-> petMapper.toEntityDto(pet, typeMapper.toEntityDto(pet.getType()))).collect(Collectors.toList());
     }
     
-    public List<PetDto> searchPets(SearchRequest searchDto){
+    public List<PetDto> searchPets(String searchDto){
+        System.out.println("usao u servis trazenja");
         List<Pet> pets;
-        if(searchDto.getSearchField()==""){
-            pets = petRepo.findAll();
-        }else //if(searchDto.getSearchType().equals("Name"))
-        {
-            pets = petRepo.getPetByCriteria(searchDto.getSearchField());
-        }
+//        if(searchDto.getSearchField()==""){
+//            pets = petRepo.findAll();
+//        }else //if(searchDto.getSearchType().equals("Name"))
+//        {
+            pets = petRepo.findByNameStartsWith(searchDto);
+            System.out.println("Broj u pets: "+pets.size());
+//        }
         return pets.stream().map((pet)-> petMapper.toEntityDto(pet, typeMapper.toEntityDto(pet.getType()))).collect(Collectors.toList());
     }
     
-    public void addPet(PetDto pet){
-        petRepo.save(petMapper.toEntityDB(pet));
+    public void addPet(PetDto petdto){
+        petRepo.save(petMapper.toEntityDB(petdto, typeRepo.findById(petdto.getType().getId()).orElse(null)));
     }
     
     public String deletePet(int petId){
         try{
             petRepo.deleteById(petId);
-            return "Pet is successfully deleted1";
+            return "Pet is successfully deleted!";
         } catch(Exception ex){
             return "Error! Pet can not be deleted!";
         }

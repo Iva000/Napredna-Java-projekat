@@ -38,8 +38,8 @@ public class PersonController {
 
     }
     
-    @GetMapping("/search")
-    public ResponseEntity<Response> searchPerson(@RequestBody SearchRequest searchRequest){
+    @GetMapping("/search/{searchRequest}")
+    public ResponseEntity<Response> searchPerson(@PathVariable("searchRequest") String searchRequest){
         return ResponseEntity.ok(HttpResponse.getResponseWithData("Searched people: ", Map.of("values", personService.searchPeople(searchRequest)), HttpStatus.OK));
     }
     
@@ -54,9 +54,10 @@ public class PersonController {
         return ResponseEntity.ok(HttpResponse.getResponseWithData("Person has been found!", Map.of("values", personService.getPerson(personId)), HttpStatus.OK));
     }
     
-    @DeleteMapping("/delete")
-    public ResponseEntity<Response> deletePerson(@PathVariable("personId") String personId){
-        return ResponseEntity.ok(HttpResponse.getResponseWithData("Person has been successfully deleted!", Map.of("value", personService.deletePerson(personId)), HttpStatus.OK));
+    @PostMapping("/delete")
+    public ResponseEntity<Response> deletePerson(@RequestBody String personId){
+        personService.deletePerson(personId);
+        return ResponseEntity.ok(HttpResponse.getResponse("Person has been successfully deleted!", HttpStatus.OK));
     }
     
     @PostMapping("/update")

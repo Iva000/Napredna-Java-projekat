@@ -213,7 +213,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**").allowedOrigins("*");
+		registry.addMapping("/**").allowedOrigins("http://localhost:4200");
 	}
 //	 @Override
 //	    public void addCorsMappings(CorsRegistry registry) {
@@ -232,6 +232,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 				http.cors().and().csrf().disable();
 				http.cors();
 				http.headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"));
+				http.headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "POST, GET, DELETE, OPTIONS"));
 			}
 		};
 	}

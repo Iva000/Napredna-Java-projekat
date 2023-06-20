@@ -29,6 +29,18 @@ public class PetMapper implements IMapper<PetDto, Pet>{
         p.setGender(entityDto.getGender());
         return p;
     }
+    
+    public Pet toEntityDB(PetDto entityDto, Type type){
+        Pet p = new Pet();
+        p.setId(entityDto.getId());
+        p.setName(entityDto.getName());
+        p.setAge((int)entityDto.getAge());
+        System.out.println("iz mappera tip je: "+ entityDto.getType().getName()+ " tip: "+ type.getName());
+        p.setType(new Type((int)type.getId(), type.getName()));
+        p.setDescription(entityDto.getDescription());
+        p.setGender(entityDto.getGender());
+        return p;
+    }
 
     @Override
     public PetDto toEntityDto(Pet entityDB) {

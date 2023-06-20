@@ -29,6 +29,17 @@ public class PersonMapper implements IMapper<PersonDto, Person>{
         p.setPhone_number(entityDto.getPhone_number());
         return p;
     }
+    
+    public Person toEntityDB(PersonDto entityDto, City city){
+        Person p = new Person();
+        p.setJmbg(entityDto.getJmbg());
+        p.setName(entityDto.getName());
+        p.setSurname(entityDto.getSurname());
+        p.setYear_of_birth(entityDto.getYear_of_birth());
+        p.setCity(new City((int)city.getId(), city.getName()));
+        p.setPhone_number(entityDto.getPhone_number());
+        return p;
+    }
 
     @Override
     public PersonDto toEntityDto(Person entityDB) {

@@ -5,6 +5,7 @@
 package com.example.demo.repo;
 
 import com.example.demo.model.Pet;
+import com.example.demo.model.Type;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,6 +23,11 @@ public interface PetRepo extends JpaRepository<Pet, Integer>{
     @Query(value="SELECT * FROM pet INNER JOIN type on pet.type = type.id WHERE id=: petId", nativeQuery = true)
     List<Pet> getPet(@Param("petId") Integer petId);
     
-    @Query(value="SELECT * FROM pet INNER JOIN type on pet.type = type.id WHERE pet.name like '%:searchParam%'", nativeQuery = true)
+    @Query(value="SELECT * FROM pet INNER JOIN type on pet.type = type.id WHERE pet.name LIKE '%:searchParam%'", nativeQuery = true)
     List<Pet> getPetByCriteria(@Param("searchParam") String searchParam);
+    
+    @Query(value="INSERT INTO pet(name, type, age, gender) values(:petName, :petType, :petAge, :petGender) INNER JOIN type on pet.type = type.id", nativeQuery=true)
+    void addPet(@Param("petName") String petName, @Param("petType") Type petType,@Param("petAge") Integer petAge,@Param("petGender") String petGender);
+
+    List<Pet> findByNameStartsWith(String name);
 }
