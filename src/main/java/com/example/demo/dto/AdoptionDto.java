@@ -25,9 +25,9 @@ public class AdoptionDto implements EntityDto{
     
     private int adoptionId;
     private LocalDate date;
-    private boolean firstTime;
+   // private boolean firstTime;
     private String vetReport;
-    private int petId;
-    private String personId;
+    private PetDto petId;
+    private PersonDto personId;
     
 }

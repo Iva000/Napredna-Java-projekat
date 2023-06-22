@@ -34,7 +34,7 @@ public class PersonController {
     
     @GetMapping("/all")
     public ResponseEntity<Response> getAll(){
-        		return ResponseEntity.ok(HttpResponse.getResponseWithData("People have been successuffly imporeted!", Map.of("values",personService.getAll()), HttpStatus.OK));
+        return ResponseEntity.ok(HttpResponse.getResponseWithData("People have been successuffly imporeted!", Map.of("values",personService.getAll()), HttpStatus.OK));
 
     }
     

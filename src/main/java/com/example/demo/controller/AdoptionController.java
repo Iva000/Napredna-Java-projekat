@@ -28,14 +28,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/adpotions")
+@RequestMapping("/adoptions")
 public class AdoptionController {
     
     private final AdoptionServise adoptionService;
     
     @GetMapping("/all")
     public ResponseEntity<Response> getAll(){
-        		return ResponseEntity.ok(HttpResponse.getResponseWithData("Adoptions have been successuffly imporeted!", Map.of("values",adoptionService.getAll()), HttpStatus.OK));
+        return ResponseEntity.ok(HttpResponse.getResponseWithData("Adoptions have been successuffly imporeted!", Map.of("values",adoptionService.getAll()), HttpStatus.OK));
 
     }
     
@@ -50,9 +50,10 @@ public class AdoptionController {
         return ResponseEntity.ok(HttpResponse.getResponseWithData("Adoption has been found!", Map.of("values", adoptionService.getAdoption(adoptionId)), HttpStatus.OK));
     }
     
-    @DeleteMapping("/delete")
-    public ResponseEntity<Response> deleteAdoption(@PathVariable("adoptionId") int adoptionId){
-        return ResponseEntity.ok(HttpResponse.getResponseWithData("Adoption has been successfully deleted!", Map.of("value", adoptionService.deleteAdoption(adoptionId)), HttpStatus.OK));
+    @PostMapping("/delete")
+    public ResponseEntity<Response> deleteAdoption(@RequestBody int adoptionId){
+        adoptionService.deleteAdoption(adoptionId);
+        return ResponseEntity.ok(HttpResponse.getResponse("Adoption has been successfully deleted!", HttpStatus.OK));
     }
     
     @PostMapping("/update")
