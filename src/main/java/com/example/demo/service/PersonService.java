@@ -77,4 +77,18 @@ public class PersonService {
         }
     }
     
+    public String login(String username, String password){
+        try{
+            Person person = personRepo.findByUsername(username);
+            if(person!=null){
+                if(person.getPassword().equals(password)){
+                    return "Welcome back "+ person.getName()+ " "+person.getSurname()+"!";
+                }
+            }
+        }catch(Exception ex){
+            return "Wrong username or password!";
+        }
+        return "Wrong username or password!";
+    }
+    
 }

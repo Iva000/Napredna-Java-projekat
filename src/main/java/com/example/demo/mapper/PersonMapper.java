@@ -27,6 +27,8 @@ public class PersonMapper implements IMapper<PersonDto, Person>{
         p.setYear_of_birth(entityDto.getYear_of_birth());
         p.setCity(new City(entityDto.getCity().getId(), entityDto.getCity().getName()));
         p.setPhone_number(entityDto.getPhone_number());
+        p.setUsername(entityDto.getUsername());
+        p.setPassword(entityDto.getPassword());
         return p;
     }
     
@@ -38,6 +40,8 @@ public class PersonMapper implements IMapper<PersonDto, Person>{
         p.setYear_of_birth(entityDto.getYear_of_birth());
         p.setCity(new City((int)city.getId(), city.getName()));
         p.setPhone_number(entityDto.getPhone_number());
+        p.setUsername(entityDto.getUsername());
+        p.setPassword(entityDto.getPassword());
         return p;
     }
 
@@ -62,6 +66,8 @@ public class PersonMapper implements IMapper<PersonDto, Person>{
         person.setYear_of_birth(entityDB.getYear_of_birth());
         person.setCity(cityDto);
         person.setPhone_number(entityDB.getPhone_number());
+        person.setUsername(entityDB.getUsername());
+        person.setPassword(entityDB.getPassword());
         return person;
     }
     

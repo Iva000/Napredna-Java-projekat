@@ -30,7 +30,7 @@ public class UserController {
     private final UserService userService;
     
     @GetMapping("/login/{username}/{password}")
-    public ResponseEntity<Response> deletePet(@PathVariable("username") String username, @PathVariable("password") String password){
+    public ResponseEntity<Response> login(@PathVariable("username") String username, @PathVariable("password") String password){
         String message = userService.login(username, password);
         return ResponseEntity.ok(HttpResponse.getResponse(message, HttpStatus.OK));
     }

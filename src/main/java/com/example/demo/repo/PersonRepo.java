@@ -30,4 +30,5 @@ public interface PersonRepo extends JpaRepository<Person, String>{
     
     void deleteByJmbg(String jmbg);
     
+    Person findByUsername(String username);
 }

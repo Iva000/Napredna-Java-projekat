@@ -49,4 +49,9 @@ public class Person implements Serializable, EntityDB{
     @Column(name="phone_number", nullable = false, updatable = true)
     private String phone_number;
     
+    @Column(name="username", nullable=true, updatable=false)
+    private String username;
+    
+    @Column(name="password", nullable=true, updatable=false)
+    private String password;
 }

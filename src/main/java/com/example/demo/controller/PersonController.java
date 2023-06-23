@@ -64,4 +64,10 @@ public class PersonController {
     public ResponseEntity<Response> updatePerson(@RequestBody PersonDto person){
         return ResponseEntity.ok(HttpResponse.getResponseWithData("Person has been successfully updated!", Map.of("value", personService.updatePerson(person)), HttpStatus.OK));
     }
+    
+    @GetMapping("login/{username}/{password}")
+    public ResponseEntity<Response> login(@PathVariable("username") String username, @PathVariable("password") String password){
+        String message = personService.login(username, password);
+        return ResponseEntity.ok(HttpResponse.getResponse(message, HttpStatus.OK));
+    }
 }

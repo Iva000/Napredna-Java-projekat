@@ -27,5 +27,7 @@ public class PersonDto implements EntityDto{
     private int year_of_birth;
     private CityDto city;
     private String phone_number;
+    private String username;
+    private String password;
     
 }
