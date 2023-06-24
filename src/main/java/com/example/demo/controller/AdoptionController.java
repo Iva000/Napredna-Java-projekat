@@ -39,6 +39,16 @@ public class AdoptionController {
 
     }
     
+    @PostMapping("/getPersonsAdoptions")
+    public ResponseEntity<Response> getPersonsAdoptions(@RequestBody PersonDto person){
+        return ResponseEntity.ok(HttpResponse.getResponseWithData("Person's adoptions have been successuffly imporeted!", Map.of("values",adoptionService.getPersonsAdoptions(person)), HttpStatus.OK));
+    }
+    
+    @GetMapping("/getAdoptionStatus/{status}")
+    public ResponseEntity<Response> getAdoptionStatus(@PathVariable("status") int status){
+        return ResponseEntity.ok(HttpResponse.getResponseWithData("Adoptions with status have been successuffly imporeted!", Map.of("values",adoptionService.getAdoptionStatus(status)), HttpStatus.OK));
+    }
+    
     @PostMapping("/add")
     public ResponseEntity<Response> addAdoption(@RequestBody AdoptionDto adoption){
         adoptionService.addAdoption(adoption);

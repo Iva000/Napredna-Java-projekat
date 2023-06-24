@@ -49,4 +49,7 @@ public class Pet implements Serializable, EntityDB{
     
     @Column(name="gender",nullable = false,updatable = true)
     private String gender;
+    
+    @Column(name="status", nullable = false, updatable=true)
+    private int status;
 }

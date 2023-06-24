@@ -27,10 +27,10 @@ public class AdoptionMapper implements IMapper<AdoptionDto, Adoption>{
         Adoption a = new Adoption();
         a.setAdoptionId(entityDto.getAdoptionId());
         a.setDate(entityDto.getDate());
-        //a.setFirstTime(entityDto.isFirstTime());
         a.setVetReport(entityDto.getVetReport());
-        a.setPetId(new Pet(entityDto.getPetId().getId(), entityDto.getPetId().getName(), entityDto.getPetId().getAge(), new Type(entityDto.getPetId().getType().getId(), entityDto.getPetId().getType().getName()), entityDto.getPetId().getDescription(), entityDto.getPetId().getGender()));
+        a.setPetId(new Pet(entityDto.getPetId().getId(), entityDto.getPetId().getName(), entityDto.getPetId().getAge(), new Type(entityDto.getPetId().getType().getId(), entityDto.getPetId().getType().getName()), entityDto.getPetId().getDescription(), entityDto.getPetId().getGender(), entityDto.getPetId().getStatus()));
         a.setPersonId(new Person(entityDto.getPersonId().getJmbg(), entityDto.getPersonId().getName(), entityDto.getPersonId().getSurname(), entityDto.getPersonId().getYear_of_birth(), new City(entityDto.getPersonId().getCity().getId(), entityDto.getPersonId().getCity().getName()), entityDto.getPersonId().getPhone_number(), entityDto.getPersonId().getUsername(), entityDto.getPersonId().getPassword()));
+        a.setStatus(entityDto.getStatus());
         return a;
     }
     
@@ -38,10 +38,10 @@ public class AdoptionMapper implements IMapper<AdoptionDto, Adoption>{
         Adoption a = new Adoption();
         a.setAdoptionId(entityDto.getAdoptionId());
         a.setDate(entityDto.getDate());
-        //a.setFirstTime(entityDto.isFirstTime());
         a.setVetReport(entityDto.getVetReport());
-        a.setPetId(new Pet(pet.getId(), pet.getName(), pet.getAge(), new Type(pet.getType().getId(), pet.getType().getName()), pet.getDescription(), pet.getGender()));
+        a.setPetId(new Pet(pet.getId(), pet.getName(), pet.getAge(), new Type(pet.getType().getId(), pet.getType().getName()), pet.getDescription(), pet.getGender(), pet.getStatus()));
         a.setPersonId(new Person(person.getJmbg(), person.getName(), person.getSurname(), (int)person.getYear_of_birth(), new City(person.getCity().getId(), person.getCity().getName()), person.getPhone_number(), person.getUsername(), person.getPassword()));
+        a.setStatus(entityDto.getStatus());
         return a;
     }
 
@@ -61,10 +61,10 @@ public class AdoptionMapper implements IMapper<AdoptionDto, Adoption>{
           AdoptionDto adoption = new AdoptionDto();
           adoption.setAdoptionId(entityDB.getAdoptionId());
           adoption.setDate(entityDB.getDate());
-          //adoption.setFirstTime(entityDB.isFirstTime());
           adoption.setVetReport(entityDB.getVetReport());
           adoption.setPetId(petDto);
           adoption.setPersonId(personDto);
+          adoption.setStatus(entityDB.getStatus());
           return adoption;
         }
 }

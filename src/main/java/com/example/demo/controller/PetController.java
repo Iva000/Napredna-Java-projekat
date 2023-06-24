@@ -39,6 +39,11 @@ public class PetController {
 
     }
     
+    @GetMapping("/withStatus/{status}")
+    public ResponseEntity<Response> getWithStatus(@PathVariable("status") int status){
+        return ResponseEntity.ok(HttpResponse.getResponseWithData("Pets have been successuffly imporeted!", Map.of("values",petService.getWithStatus(status)), HttpStatus.OK));
+    }
+    
     @GetMapping("/search/{searchRequest}")
     public ResponseEntity<Response> searchPet(@PathVariable("searchRequest") String searchRequest){
         System.out.println("usao u kontroler");

@@ -38,9 +38,6 @@ public class Adoption implements Serializable, EntityDB{
     @Column(name="date",nullable = false,updatable = true)
     private LocalDate date;
     
-//    @Column(name="firstTime",nullable = false,updatable = true)
-//    private boolean firstTime;
-    
     @Column(name="vetReport",nullable = false,updatable = true)
     private String vetReport;
     
@@ -49,7 +46,10 @@ public class Adoption implements Serializable, EntityDB{
     private Pet petId;
     
     @ManyToOne
-    @JoinColumn(name="personId",nullable = false,updatable = true)
+    @JoinColumn(name="personId",nullable = false,updatable = true, unique = false)
     private Person personId;
+    
+    @Column(name="status", nullable=false, updatable=true)
+    private int status;
     
 }

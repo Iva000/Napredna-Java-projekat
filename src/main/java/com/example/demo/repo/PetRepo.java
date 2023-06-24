@@ -30,4 +30,6 @@ public interface PetRepo extends JpaRepository<Pet, Integer>{
     void addPet(@Param("petName") String petName, @Param("petType") Type petType,@Param("petAge") Integer petAge,@Param("petGender") String petGender);
 
     List<Pet> findByNameStartsWith(String name);
+    
+    List<Pet> findByStatus(int status);
 }

@@ -38,6 +38,11 @@ public class PetService {
         return pets.stream().map((pet)-> petMapper.toEntityDto(pet, typeMapper.toEntityDto(pet.getType()))).collect(Collectors.toList());
     }
     
+    public List<PetDto> getWithStatus(int status){
+        List<Pet> pets = petRepo.findByStatus(status);
+        return pets.stream().map((pet)-> petMapper.toEntityDto(pet, typeMapper.toEntityDto(pet.getType()))).collect(Collectors.toList());
+    }
+    
     public List<PetDto> searchPets(String searchDto){
         System.out.println("usao u servis trazenja");
         List<Pet> pets;

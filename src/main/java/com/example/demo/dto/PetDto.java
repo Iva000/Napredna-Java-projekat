@@ -27,4 +27,5 @@ public class PetDto implements EntityDto{
     private TypeDto type;
     private String description;
     private String gender;
+    private int status;
 }

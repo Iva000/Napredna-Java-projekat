@@ -5,6 +5,7 @@
 package com.example.demo.repo;
 
 import com.example.demo.model.Adoption;
+import com.example.demo.model.Person;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +20,8 @@ public interface AdoptionRepo extends JpaRepository<Adoption, Integer>{
 //            + "INNER JOIN PET ON ADOPTION.PETID = PET.ID INNER JOIN PERSON ON ADOPTION.PERSONID = PERSON.JMBG "
 //            + "INNER JOIN TYPE ON PET.TYPE = TYPE.ID "
     List<Adoption> getAllAdoptions();
+    
+    List<Adoption> findByPersonId(Person person);
+    
+    List<Adoption> findByStatus(int status);
 }

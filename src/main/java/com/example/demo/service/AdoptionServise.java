@@ -5,12 +5,14 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.AdoptionDto;
+import com.example.demo.dto.PersonDto;
 import com.example.demo.mapper.AdoptionMapper;
 import com.example.demo.mapper.CityMapper;
 import com.example.demo.mapper.PersonMapper;
 import com.example.demo.mapper.PetMapper;
 import com.example.demo.mapper.TypeMapper;
 import com.example.demo.model.Adoption;
+import com.example.demo.model.Person;
 import com.example.demo.repo.AdoptionRepo;
 import com.example.demo.repo.PersonRepo;
 import com.example.demo.repo.PetRepo;
@@ -44,6 +46,16 @@ public class AdoptionServise {
         return adoptions.stream().map((adoption)-> adoptionMapper.toEntityDto(adoption, petMapper.toEntityDto(adoption.getPetId(), typeMapper.toEntityDto(adoption.getPetId().getType())), personMapper.toEntityDto(adoption.getPersonId(), cityMapper.toEntityDto(adoption.getPersonId().getCity())))).collect(Collectors.toList());
     }
     
+    public List<AdoptionDto> getPersonsAdoptions(PersonDto person){
+        List<Adoption> adoptions = adoptionRepo.findByPersonId(personMapper.toEntityDB(person));
+        return adoptions.stream().map((adoption)-> adoptionMapper.toEntityDto(adoption, petMapper.toEntityDto(adoption.getPetId(), typeMapper.toEntityDto(adoption.getPetId().getType())), personMapper.toEntityDto(adoption.getPersonId(), cityMapper.toEntityDto(adoption.getPersonId().getCity())))).collect(Collectors.toList());
+    }
+    
+    public List<AdoptionDto> getAdoptionStatus(int status){
+        List<Adoption> adoptions = adoptionRepo.findByStatus(status);
+        return adoptions.stream().map((adoption)-> adoptionMapper.toEntityDto(adoption, petMapper.toEntityDto(adoption.getPetId(), typeMapper.toEntityDto(adoption.getPetId().getType())), personMapper.toEntityDto(adoption.getPersonId(), cityMapper.toEntityDto(adoption.getPersonId().getCity())))).collect(Collectors.toList());
+    }
+    
     public void addAdoption(AdoptionDto adoption){
         adoptionRepo.save(adoptionMapper.toEntityDB(adoption));
     }
@@ -73,4 +85,5 @@ public class AdoptionServise {
             return "Error! Adoption can not be updated!";
         }
     }
+    
 }
