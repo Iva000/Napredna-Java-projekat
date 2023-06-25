@@ -52,4 +52,7 @@ public class Pet implements Serializable, EntityDB{
     
     @Column(name="status", nullable = false, updatable=true)
     private int status;
+    
+    @Column(name="image", nullable = false, updatable=true)
+    private String image;
 }

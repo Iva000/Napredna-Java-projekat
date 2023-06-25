@@ -28,7 +28,7 @@ public class AdoptionMapper implements IMapper<AdoptionDto, Adoption>{
         a.setAdoptionId(entityDto.getAdoptionId());
         a.setDate(entityDto.getDate());
         a.setVetReport(entityDto.getVetReport());
-        a.setPetId(new Pet(entityDto.getPetId().getId(), entityDto.getPetId().getName(), entityDto.getPetId().getAge(), new Type(entityDto.getPetId().getType().getId(), entityDto.getPetId().getType().getName()), entityDto.getPetId().getDescription(), entityDto.getPetId().getGender(), entityDto.getPetId().getStatus()));
+        a.setPetId(new Pet(entityDto.getPetId().getId(), entityDto.getPetId().getName(), entityDto.getPetId().getAge(), new Type(entityDto.getPetId().getType().getId(), entityDto.getPetId().getType().getName()), entityDto.getPetId().getDescription(), entityDto.getPetId().getGender(), entityDto.getPetId().getStatus(), entityDto.getPetId().getImage()));
         a.setPersonId(new Person(entityDto.getPersonId().getJmbg(), entityDto.getPersonId().getName(), entityDto.getPersonId().getSurname(), entityDto.getPersonId().getYear_of_birth(), new City(entityDto.getPersonId().getCity().getId(), entityDto.getPersonId().getCity().getName()), entityDto.getPersonId().getPhone_number(), entityDto.getPersonId().getUsername(), entityDto.getPersonId().getPassword()));
         a.setStatus(entityDto.getStatus());
         return a;
@@ -39,7 +39,7 @@ public class AdoptionMapper implements IMapper<AdoptionDto, Adoption>{
         a.setAdoptionId(entityDto.getAdoptionId());
         a.setDate(entityDto.getDate());
         a.setVetReport(entityDto.getVetReport());
-        a.setPetId(new Pet(pet.getId(), pet.getName(), pet.getAge(), new Type(pet.getType().getId(), pet.getType().getName()), pet.getDescription(), pet.getGender(), pet.getStatus()));
+        a.setPetId(new Pet(pet.getId(), pet.getName(), pet.getAge(), new Type(pet.getType().getId(), pet.getType().getName()), pet.getDescription(), pet.getGender(), pet.getStatus(), pet.getImage()));
         a.setPersonId(new Person(person.getJmbg(), person.getName(), person.getSurname(), (int)person.getYear_of_birth(), new City(person.getCity().getId(), person.getCity().getName()), person.getPhone_number(), person.getUsername(), person.getPassword()));
         a.setStatus(entityDto.getStatus());
         return a;

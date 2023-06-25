@@ -28,6 +28,7 @@ public class PetMapper implements IMapper<PetDto, Pet>{
         p.setDescription(entityDto.getDescription());
         p.setGender(entityDto.getGender());
         p.setStatus(entityDto.getStatus());
+        p.setImage(entityDto.getImage());
         return p;
     }
     
@@ -41,6 +42,7 @@ public class PetMapper implements IMapper<PetDto, Pet>{
         p.setDescription(entityDto.getDescription());
         p.setGender(entityDto.getGender());
         p.setStatus(entityDto.getStatus());
+        p.setImage(entityDto.getImage());
         return p;
     }
 
@@ -58,6 +60,7 @@ public class PetMapper implements IMapper<PetDto, Pet>{
         pet.setDescription(entityDB.getDescription());
         pet.setGender(entityDB.getGender());
         pet.setStatus(entityDB.getStatus());
+        pet.setImage(entityDB.getImage());
         return pet;
     }
     
